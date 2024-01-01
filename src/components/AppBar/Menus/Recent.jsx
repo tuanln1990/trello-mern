@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
+
 import Check from "@mui/icons-material/Check";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
@@ -21,6 +22,7 @@ function Recent() {
   return (
     <Box>
       <Button
+        sx={{ color: "white" }}
         id="basic-button-recent"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"

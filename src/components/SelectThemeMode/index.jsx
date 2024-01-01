@@ -14,15 +14,28 @@ function SelectThemeMode() {
     setMode(currentMode);
   };
   return (
-    <FormControl>
-      <InputLabel id="demo-simple-select-label">Mode</InputLabel>
+    <FormControl size="small" sx={{ minWidth: 120 }}>
+      <InputLabel
+        sx={{ color: "white", "&.Mui-focused": { color: "white" } }}
+        id="demo-simple-select-label"
+      >
+        Mode
+      </InputLabel>
       <Select
-        sx={{ height: "40px" }}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={mode}
         label="Mode"
         onChange={handleChange}
+        sx={{
+          color: "white",
+          ".MuiOutlinedInput-notchedOutline": { borderColor: "white" },
+          "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "white" },
+          ".MuiSvgIcon-root": { color: "white" },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "white",
+          },
+        }}
       >
         <MenuItem value="light">
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
