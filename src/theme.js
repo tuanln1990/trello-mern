@@ -65,6 +65,17 @@ const theme = extendTheme({
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // color: theme.palette.primary.main,
+          "&.MuiTypography-body1": {
+            fontSize: "0.875rem",
+          },
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         // Name of the slot
