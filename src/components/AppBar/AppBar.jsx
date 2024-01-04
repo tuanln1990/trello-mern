@@ -1,4 +1,4 @@
-import SelectThemeMode from "../SelectThemeMode";
+import SelectThemeMode from "../ModeSelect/ModeSelect";
 import SvgIcon from "@mui/material/SvgIcon";
 import Box from "@mui/material/Box";
 import AppsIcon from "@mui/icons-material/Apps";
