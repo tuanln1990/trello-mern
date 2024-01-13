@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -15,8 +16,29 @@ import DeleteForever from "@mui/icons-material/DeleteForever";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { useState } from "react";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sorts";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
-function Column() {
+function Column({ column }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: column._id, data: { ...column } });
+
+  const dndKitColumnStyles = {
+    // touchAction: "none",
+    transform: CSS.Translate.toString(transform),
+    transition,
+    height: "100%",
+    opacity: isDragging ? 0.5 : undefined,
+  };
+
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -25,9 +47,12 @@ function Column() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
-    <div>
+    // Bọc div để fix bug chiều cao column khi drag
+    <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
       <Box
+        {...listeners}
         sx={{
           minWidth: "300px",
           maxWidth: "300px",
@@ -54,7 +79,7 @@ function Column() {
             variant="h6"
             sx={{ fontSize: "1rem", fontWeight: "bold", cursor: "pointer" }}
           >
-            Column Title
+            {column?.title}
           </Typography>
           <Box>
             <Tooltip title="More Options">
@@ -118,7 +143,7 @@ function Column() {
         </Box>
 
         {/* Content */}
-        <ListCards />
+        <ListCards cards={orderedCards} />
         {/* Footer */}
         <Box
           sx={{
